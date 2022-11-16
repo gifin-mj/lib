@@ -1,0 +1,54 @@
+<section class="vh-80">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3 ">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card bg-dark text-white" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-4">Sign UP</h2>
+               
+              <form method="post" action="/signup">
+
+                <div class="form-outline mb-3">
+                  <input type="text" required name="name" id="form3Example1cg" placeholder="Name" class="form-control form-control-lg" />
+                </div>
+
+                <div class="form-outline mb-3">
+                  <input type="password"
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                  title="Must contain at least one  number and one letter, and at least 8 or more characters"
+                   required name="password" placeholder="Enter Password" id="form3Example4cg" class="form-control form-control-lg" />
+                </div>
+            {{#if status}}
+                <div class="form-outline mb-3">
+                  <input pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                  title="Must contain at least one  number and one letter, and at least 8 e characters"
+                  type="password" required name="cpassword" placeholder="Confirm Password" id="form3Example4cdg" class="form-control form-control-lg" />
+                </div>
+                <p class="text-danger text-center" >Passwords Mismatch</p>
+                {{else}}
+                <div class="form-outline mb-5">
+                  <input
+                  pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" 
+                  title="Must contain at least one  number and one letter, and at least 8 or more characters" 
+                  type="password" required name="cpassword" placeholder="Confirm Password" id="form3Example4cdg" class="form-control form-control-lg" />
+                </div>
+                {{/if}}
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-outline-light btn-lg">Register</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account?
+                     <a href="/login" 
+                    class="text-white-50 fw-bold">Login here</a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

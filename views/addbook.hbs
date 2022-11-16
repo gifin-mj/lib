@@ -1,0 +1,69 @@
+<section>
+    <div class="container mt-4 mb-3">
+
+        {{#if book}}
+        <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Edit Book</p>
+        <form action="/updatebook/{{#each book}}{{_id}}{{/each}}" method="post"enctype="multipart/form-data" >
+        {{else}}
+        <p class="text-center h1 fw-bold mb-3 mx-1 mx-md-4 mt-4">Add Book</p>
+        <form action="/addbook" method="post" enctype="multipart/form-data" >
+        {{/if}}
+            <div class="form-group">
+                
+                <input type="text" required class="form-control mt-3" value="{{#each book}}{{title}}{{/each}}"  name="title" placeholder="Book Title" />
+             </div>
+             <div class="form-group">
+
+                <input type="text" required class="form-control mt-3" value="{{#each book}}{{author}}{{/each}}" name="author" placeholder="Author Name" />
+             </div>
+              <div class="form-group">
+              <input type="text" hidden name="userid" 
+              value=
+                    {{#if user.id}}
+                        {{user.id}}
+                    {{else}}
+                        {{user._id}}
+                    {{/if}}
+
+                    />
+                    </div>
+             <div class="form-group">
+                <input type="text" required class="form-control mt-3" value="{{#each book}}{{category}}{{/each}}" name="category" placeholder="Book Category" />
+             </div>
+              <div class="form-group">
+
+                <input type="text" required class="form-control mt-3" value="{{#each book}}{{publisher}}{{/each}}" name="publisher" placeholder="Book Publisher" />
+             </div>
+             <div class="form-group">
+
+                <input type="number" required class="form-control mt-3"  name="price" value="{{#each book}}{{price}}{{/each}}" placeholder="price" />
+             </div>
+            <div class="form-group mt-3">
+                
+                <label for="exampleFormControlFile1 ">Select Image</label>
+                {{#if book}}
+                <img src="/images/{{#each book}}{{_id}}{{/each}}.jpg" width="50px" height="auto" id="imgview"  />
+                <input  type="file" name="image"  class="form-control" value="{{#each book}}{{_id}}{{/each}}.jpg" onchange='imageView(event)' id="exampleFormControlFile1" />
+                {{else}}
+                <img src="/product-images/{{prods._id}}.jpg" width="50px" alt="Select Image" height="auto" id="imgview"  />
+                <input required  type="file" name="image" class="form-control" onchange='imageView(event)' id="exampleFormControlFile1" />
+                {{/if}}
+             </div>
+             <div class="row">
+                {{#if book}}
+                <input type="submit" class="btn btn-secondary btn-lg btn-block mt-3 ml-auto"   value="Update Book" />
+                {{else}}
+                <input type="submit" class="btn btn-secondary btn-lg btn-block mt-3 ml-auto"   value="Add Book" />
+                {{/if}}
+            </div>
+        </form>
+
+    </div>
+</section>
+
+<script>
+    function imageView(event){
+
+        document.getElementById('imgview').src=URL.createObjectURL(event.target.files[0])
+    }
+</script>
